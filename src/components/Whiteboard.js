@@ -6,7 +6,6 @@ import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import CourseList from './CourseList'
 import CourseGrid from './CourseGrid'
 import courses from './courses.json'
-import OmdbClient from '../omdb/OmdbClient'
 
 export default class Whiteboard extends React.Component {
     constructor(props) {
@@ -49,12 +48,9 @@ export default class Whiteboard extends React.Component {
               </div>
           </div>
       </div>
-                    <Link to="/omdb">Omdb</Link> |
+                    
                     <Link to="/course-list">List</Link> 
-                    <Route
-                        path="/omdb"
-                        component={OmdbClient}
-                    />
+                   
                     <Route
                         path="/course-grid"
                         render={() => <CourseGrid courses={courses}/>}/>
