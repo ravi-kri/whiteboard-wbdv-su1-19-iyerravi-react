@@ -1,9 +1,9 @@
 import React from 'react'
 import CourseListItem from './CourseListItem'
+import './CourseList.css';
 
 const CourseList = ({courses}) =>
     <div>
-        <h1>Course List</h1>
         <div className="list-group">
 
             {

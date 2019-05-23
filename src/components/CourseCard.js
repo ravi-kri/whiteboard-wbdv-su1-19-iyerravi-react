@@ -18,8 +18,8 @@ export default class CourseCard
                     <a href={`/course-editor/${this.props.course.id}`} className="btn btn-link"> {this.props.course.title} </a>  
                     </h5>
                     <p className="card-text">Description of the course</p>
-                    <a href={`/course-editor/${this.props.course.id}`}>Edit Course</a><br></br>
-                    <a href="">Delete Course</a>
+                    <a href={`/course-editor/${this.props.course.id}`} className="fas fa-edit">Edit Course</a><br></br>
+                    <a href="" className="fas fa-times">Delete Course</a>
                 </div>
             </div>
         )
