@@ -10,14 +10,16 @@ export default class CourseCard
     render() {
         return (
             <div className="card" styles={{width: '18rem'}}>
+            
                 <img className="card-img-top"
                      src="https://picsum.photos/300/200"/>
                 <div className="card-body">
                     <h5 className="card-title">
-                        {this.props.course.title}
+                    <a href={`/course-editor/${this.props.course.id}`} className="btn btn-link"> {this.props.course.title} </a>  
                     </h5>
-                    <p className="card-text">Card text.</p>
-                    <a href={`/course-editor/${this.props.course.id}`} className="btn btn-primary">More...</a>
+                    <p className="card-text">Description of the course</p>
+                    <a href={`/course-editor/${this.props.course.id}`}>Edit Course</a><br></br>
+                    <a href="">Delete Course</a>
                 </div>
             </div>
         )
