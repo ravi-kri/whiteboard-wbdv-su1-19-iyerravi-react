@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
 
-const CourseListItem = ({deleteACourse,course}) => {   
+const CourseRow = ({deleteACourse,course}) => {   
 
         return (
 
@@ -30,4 +30,4 @@ const CourseListItem = ({deleteACourse,course}) => {
         )
     }
 
-export default CourseListItem;
+export default CourseRow;

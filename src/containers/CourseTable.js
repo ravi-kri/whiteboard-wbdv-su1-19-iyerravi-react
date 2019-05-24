@@ -1,5 +1,5 @@
 import React from 'react'
-import CourseListItem from '../components/CourseListItem'
+import CourseRow from '../components/CourseRow'
 import './CourseTable.css';
 import {Link} from 'react-router-dom';
 
@@ -60,7 +60,7 @@ const CourseTable = ({courses,addNewCourse,deleteACourse}) => {
 
             {
                 courses.map(course =>
-                    <CourseListItem 
+                    <CourseRow
                     key={course.id}
                     deleteACourse={deleteACourse}
                     course={course}

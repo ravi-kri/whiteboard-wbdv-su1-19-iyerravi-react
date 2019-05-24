@@ -4,8 +4,8 @@ import TopicService from "../services/TopicService";
 import LessonService from "../services/LessonService";
 import CourseService from "../services/CourseService";
 import ModuleService from "../services/ModuleService";
-import Module from "./Module";
-import LessonTabs from "./LessonTabs";
+import Module from "../components/Module";
+import LessonTabs from "../components/LessonTabs";
 
 class CourseEditor extends React.Component {
     constructor(props) {

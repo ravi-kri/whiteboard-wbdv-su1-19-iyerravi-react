@@ -1,10 +1,10 @@
 import React from 'react'
 import CourseCard from './CourseCard'
 import ModuleList from "./ModuleList";
-import CourseEditor from "./CourseEditor";
+import CourseEditor from "../containers/CourseEditor";
 import {BrowserRouter as Router, Link, Route, Redirect} from 'react-router-dom'
 import CourseTable from '../containers/CourseTable'
-import CourseGrid from './CourseGrid'
+import CourseGrid from '../containers/CourseGrid'
 import courses from './courses.json'
 import CourseService from '../services/CourseService'
 import {Switch} from "react-router";
