@@ -3,16 +3,37 @@ import CourseCard from './CourseCard'
 import './CourseGrid.css';
 import {Link} from 'react-router-dom';
 
-const CourseGrid = ({courses}) =>
+const CourseGrid = ({courses,addNewCourse,deleteACourse}) => {
+    var newCourseTitle;
+    return(
     <div>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossOrigin="anonymous"></link>
         <nav className="navbar navbar-expand navbar-light bg-primary">
        <i className="pr-3 fas fa-bars"></i>
       <a className="d-sm-inline navbar-brand d-none" href="#" >Course Manager</a>
       <form className="form-inline my-2 wbdv-increaseWidth">
-            <input className="form-control col-9" id="sb" placeholder="New Course Title"/>
+            {/* <input className="form-control col-9" id="sb" placeholder="New Course Title"/> */}
+            <input placeholder="New Course Title" className="form-control col-9"
+                    ref={selectDomElement => 
+                        {
+                            newCourseTitle = selectDomElement
+                        }}
+                        />
             <div>
-            <button className="btn btn-danger addCourse p-2" type="submit"><i className="fas fa-plus"></i></button>
+
+            <Link onClick={() => {
+                        addNewCourse({
+                        id: (new Date()).getTime()+'',
+                        title: newCourseTitle.value,
+                        modules :[]
+                        });
+                        newCourseTitle.value = '';
+                    }}>
+                    <button className="btn btn-danger p-2"><i className="fas fa-plus"></i></button>
+                    </Link>
+             
+
+            
           </div>
         </form>
       </nav>
@@ -44,10 +65,12 @@ const CourseGrid = ({courses}) =>
             courses.map((course) =>
                 <CourseCard course={course}
                             key={course.id}
-                            title={course.title}/>)
+                            title={course.title}
+                            deleteACourse={deleteACourse}/>)
         }
         
         </div>
     </div>
-
+  )
+}
 export default CourseGrid
