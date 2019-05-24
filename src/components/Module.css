@@ -1,0 +1,26 @@
+.wbdv-mTabStyling .nav-link {
+    background: blue;
+    color: white;
+}
+
+.wbdv-mStyling {
+    margin-top:10vh;
+}
+
+.wbdv-mStyling .nav-link {
+    background: blue;
+    color: white;
+}
+
+.wbdv-mStyling .nav-pills .nav-link.active {
+    background: red;
+    color: white;
+}
+
+
+.wbdv-mTabStyling {
+    background: blueviolet;
+    height: 100vh;
+    position: fixed;
+}
+

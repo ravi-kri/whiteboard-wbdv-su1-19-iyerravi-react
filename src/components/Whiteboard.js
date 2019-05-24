@@ -3,7 +3,7 @@ import CourseCard from './CourseCard'
 import ModuleList from "./ModuleList";
 import CourseEditor from "./CourseEditor";
 import {BrowserRouter as Router, Link, Route, Redirect} from 'react-router-dom'
-import CourseList from './CourseList'
+import CourseTable from '../containers/CourseTable'
 import CourseGrid from './CourseGrid'
 import courses from './courses.json'
 import CourseService from '../services/CourseService'
@@ -18,11 +18,11 @@ export default class Whiteboard extends React.Component {
         }
     }
 
-    addNewCourse = course => {
-        this.courseService.createCourse(course);
-        this.setState({
-            courses: this.courseService.findAllCourses()
-        })
+    updateCourse = courseId => {
+        this.courseService.updateCourse(courseId)
+        let newState = {...this.state}
+        newState.courses = this.courseService.findAllCourses();
+        this.setState(newState);
     }
 
     deleteACourse = course => {
@@ -32,11 +32,33 @@ export default class Whiteboard extends React.Component {
         })
     }
 
+    addNewCourse = course => {
+        this.courseService.createCourse(course);
+        this.setState({
+            courses: this.courseService.findAllCourses()
+        })
+    }
+    
+
     render() {
         return (
             <Router>
                 <Switch>         
                     <Redirect exact path="/" to="/course-list"/>
+                    <Route
+                        path="/course-editor/:courseId"
+                        render={(props) => 
+                        <CourseEditor 
+                            {...props}
+                            findCourseById = {this.courseService.findCourseById}
+                            updateCourse = {this.updateCourse}
+                            courses={courses}/>}/>
+                    <Route
+                        path="/course-list"
+                        render={() => <CourseTable 
+                        deleteACourse={this.deleteACourse}
+                        addNewCourse={this.addNewCourse}
+                        courses={this.state.courses}/>}/>
                     <Route
                         path="/course-grid"
                         render={() => <CourseGrid 
@@ -44,15 +66,7 @@ export default class Whiteboard extends React.Component {
                         deleteACourse={this.deleteACourse}
                         addNewCourse={this.addNewCourse}
                         courses={this.state.courses}/>}/>
-                    <Route
-                        path="/course-list"
-                        render={() => <CourseList 
-                        deleteACourse={this.deleteACourse}
-                        addNewCourse={this.addNewCourse}
-                        courses={this.state.courses}/>}/>
-                    <Route
-                        path="/course-editor/:courseId"
-                        render={props => <CourseEditor courses={courses}/>}/>
+                    
             </Switch> 
             </Router>
         )

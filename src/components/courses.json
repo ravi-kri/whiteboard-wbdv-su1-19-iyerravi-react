@@ -3,7 +3,8 @@
     "id": "123",
     "title": "CS5610",
     "modules": [
-      {
+      { 
+        "id": "1991",
         "title": "Week 1",
         "lessons": [
           {
@@ -35,24 +36,13 @@
                     "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
                   }
                 ]
-              },
-              {
-                "title": "Tags",
-                "widgets": []
-              },
-              {
-                "title": "Attributes",
-                "widgets": []
               }
             ]
-          },
-          {
-            "title": "CSS",
-            "topics": []
           }
         ]
       },
       {
+        "id": "1992",
         "title": "Week 2",
         "lessons": []
       }
@@ -78,7 +68,9 @@
     "title": "CS5500",
     "modules": [
       {
-        "title": "SCRUM"
+        "id": "1993",
+        "title": "SCRUM",
+        "lessons": []
       }
     ]
   }

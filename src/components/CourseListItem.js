@@ -8,7 +8,7 @@ const CourseListItem = ({deleteACourse,course}) => {
 <div className="row wbdv-rowadjustment">
 <div className="col-sm-5 col-9">
     <a href="#"> <i className="fas fa-file"></i> </a>
-    <Link to = {`/course-editor/${course.id}`} className="fas fa-edit">{course.title}</Link>
+    <Link to = {'/course-editor/'+ course.id } className="fas fa-edit">{course.title}</Link>
 </div>
 <div className="d-none col-2 d-sm-block">
     John
@@ -17,11 +17,11 @@ const CourseListItem = ({deleteACourse,course}) => {
     7:56 PM
 </div>
 <div className="col-1 wbdv-cross">
-<Link to = {`/course-editor/${course.id}`} className="fas fa-edit"></Link>
+<Link to = {'/course-editor/'+ course.id } className="fas fa-edit"></Link>
 </div>
 <div className="col-1 wbdv-cross">
 
-<Link className="fas fa-times" onClick={e => {
+<Link to="#" className="fas fa-times" onClick={e => {
                     deleteACourse({id:course.id});
                 }}></Link>
                     

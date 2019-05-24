@@ -13,7 +13,7 @@ const CourseGrid = ({courses,addNewCourse,deleteACourse}) => {
       <a className="d-sm-inline navbar-brand d-none" href="#" >Course Manager</a>
       <form className="form-inline my-2 wbdv-increaseWidth">
             {/* <input className="form-control col-9" id="sb" placeholder="New Course Title"/> */}
-            <input placeholder="New Course Title" className="form-control col-9"
+            <input value="New Course Title" className="form-control col-9"
                     ref={selectDomElement => 
                         {
                             newCourseTitle = selectDomElement
@@ -21,7 +21,7 @@ const CourseGrid = ({courses,addNewCourse,deleteACourse}) => {
                         />
             <div>
 
-            <Link onClick={() => {
+            <Link to="#" onClick={() => {
                         addNewCourse({
                         id: (new Date()).getTime()+'',
                         title: newCourseTitle.value,
@@ -33,7 +33,6 @@ const CourseGrid = ({courses,addNewCourse,deleteACourse}) => {
                     </Link>
              
 
-            
           </div>
         </form>
       </nav>

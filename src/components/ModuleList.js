@@ -1,71 +1,68 @@
-import React from 'react'
-import ModuleItem from './ModuleItem'
-
-export default class ModuleList
-    extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            module: {
-                id: -1,
-                title: 'New Module'
-            },
-            modules: this.props.modules
-            //     [
-            //     {id: 123, title: 'Organic Chemistry'},
-            //     {id: 234, title: 'Economics 101'},
-            //     {id: 345, title: 'Quantum Physics'}
-            // ]
-        }
-    }
-    createModule = () => {
-        // this.state.module.push()
-        this.state.module.id = (new Date()).getTime()
-        this.setState({
-            modules: [this.state.module, ...this.state.modules]
-        })
-    }
-    titleChanged = (event) => {
-        console.log(event.target.value)
-        this.setState({
-            module: {
-                title: event.target.value,
-                id: (new Date()).getTime()
-            }
-        })
-    }
-    deleteModule = (id) => {
-        console.log('deleteModule ' + id)
-        this.setState({
-            modules: this.state.modules.filter(module => module.id !== id)
-        })
-    }
-
-    render() {
-        return(
-            <div>
-                <h3>Module List</h3>
-                <ul className="list-group">
-                    <li className="list-group-item">
-                        <input
-                            onChange={this.titleChanged}
-                            defaultValue={this.state.module.title}
-                            className="form-control"/>
-                        <button onClick={this.createModule} className="btn btn-primary btn-block">
-                            Add Module
-                        </button>
-                    </li>
-                    {
-                        this.state.modules.map(
-                            module =>
-                                <ModuleItem
-                                    deleteModule={this.deleteModule}
-                                    module={module}
-                                    key={module.id}/>
-                        )
-                    }
-                </ul>
-            </div>
-        )
-    }
+import React from 'react';
+import {Link} from 'react-router-dom';
+const ModuleList = ({
+    modules, 
+    selectedModule, 
+    selectModule, 
+    deleteModule, 
+    addModule, 
+    updateModule}) => {
+    let nameMod;
+    return (
+<div className="container">
+<div className="row nav flex-column nav-pills">
+<span className="container">
+<input defaultValue="New Module"
+        ref={selectDomElement => {nameMod = selectDomElement}}/>
+<Link to="#" onClick={() => {addModule({ id: (new Date()).getTime() + '',title: nameMod.value });
+            nameMod.value = 'New Module';
+        }}>
+    <i className="action-icon fas fa-x fa-plus"></i>
+</Link>
+</span>
+{
+modules.map((module, index) => {
+let pillStyle = "nav-link";
+let newName;
+let newid = module.id;
+if (module.id == selectedModule)
+pillStyle = 'nav-link active ';
+return (
+<span key={module.id + '-module-list-item'}
+        className={pillStyle}
+        onClick={() => {selectModule(module.id);}}>
+    <input disabled={true}
+        ref = {(domNode) => {newName = domNode;}}
+        onChange={(e) => {
+            let module = modules.filter(m => m.id==newid)[0];
+            module.title = e.currentTarget.value;
+            updateModule(module);}}
+            value={module.title}
+                style={{backgroundColor:'transparent',
+                    border:5,
+                    color:'black'}}/>
+    
+    <Link className="mr-2 float-right"
+            to="#"
+            onClick={(e) => {
+                newName.removeAttribute('disabled');
+                newName.focus();
+                newName.select();
+                e.stopPropagation();
+            }}>
+        <i className="action-icon fas fa-pencil-alt" style={{color: 'black'}}></i>
+    </Link>
+    <Link className="float-right mr-2" to="#"
+        onClick={(e) => {e.stopPropagation();
+            deleteModule(module.id);}}>
+        <i className="fas fa-times" style={{color : 'black'}}></i>
+    </Link>
+</span>
+)
+})
 }
+</div>
+</div>
+);
+}
+export default ModuleList;

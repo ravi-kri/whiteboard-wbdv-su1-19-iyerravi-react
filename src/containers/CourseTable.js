@@ -1,9 +1,9 @@
 import React from 'react'
-import CourseListItem from './CourseListItem'
-import './CourseList.css';
+import CourseListItem from '../components/CourseListItem'
+import './CourseTable.css';
 import {Link} from 'react-router-dom';
 
-const CourseList = ({courses,addNewCourse,deleteACourse}) => {
+const CourseTable = ({courses,addNewCourse,deleteACourse}) => {
 
     var newCourseTitle;
     return(
@@ -13,7 +13,7 @@ const CourseList = ({courses,addNewCourse,deleteACourse}) => {
        <i className="pr-3 fas fa-bars"></i>
       <a className="d-sm-inline navbar-brand d-none" href="#" >Course Manager</a>
       <form className="form-inline my-2 wbdv-increaseWidth">
-            <input placeholder="New Course Title" className="form-control col-9"
+            <input value="New Course Title" className="form-control col-9"
                     ref={selectDomElement => 
                         {
                             newCourseTitle = selectDomElement
@@ -72,4 +72,4 @@ const CourseList = ({courses,addNewCourse,deleteACourse}) => {
     </div>
     )
 }
-export default CourseList
+export default CourseTable
