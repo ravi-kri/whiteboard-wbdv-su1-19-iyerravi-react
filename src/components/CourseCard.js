@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 export default class CourseCard
     extends React.Component
@@ -15,10 +16,10 @@ export default class CourseCard
                      src="https://picsum.photos/300/200"/>
                 <div className="card-body">
                     <h5 className="card-title">
-                    <a href={`/course-editor/${this.props.course.id}`} className="btn btn-link"> {this.props.course.title} </a>  
+                    <Link to = {`/course-editor/${this.props.course.id}`} className="btn btn-link"> {this.props.course.title}</Link>
                     </h5>
                     <p className="card-text">Description of the course</p>
-                    <a href={`/course-editor/${this.props.course.id}`} className="fas fa-edit">Edit Course</a><br></br>
+                    <Link to = {`/course-editor/${this.props.course.id}`} className="fas fa-edit">Edit Course</Link><br></br>
                     <a href="" className="fas fa-times">Delete Course</a>
                 </div>
             </div>

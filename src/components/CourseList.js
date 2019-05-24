@@ -1,14 +1,51 @@
 import React from 'react'
 import CourseListItem from './CourseListItem'
 import './CourseList.css';
+import {Link} from 'react-router-dom';
 
 const CourseList = ({courses}) =>
     <div>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossOrigin="anonymous"></link>
+        <nav className="navbar navbar-expand navbar-light bg-primary">
+       <i className="pr-3 fas fa-bars"></i>
+      <a className="d-sm-inline navbar-brand d-none" href="#" >Course Manager</a>
+      <form className="form-inline my-2 wbdv-increaseWidth">
+            <input className="form-control col-9" id="sb" placeholder="New Course Title"/>
+            <div>
+            <button className="btn btn-danger addCourse p-2" type="submit"><i className="fas fa-plus"></i></button>
+          </div>
+        </form>
+      </nav>
+      <div className = "wbdv-columnnamebg">
+          <div className="container">
+              <div className="row">
+                  
+                  <div className="d-block d-sm-none">
+					<p className="d-inline p-3">Today</p>
+                  </div>
+                  <div className="d-none d-sm-block col-sm-4">
+                      Title
+                  </div>
+                  <div className="d-sm-block d-none col-3">
+                       <a href="#">Owned By <i className="fas fa-caret-down"></i></a>
+                  </div>
+                  <div className="d-sm-block d-none col-4">
+                      <p className="d-inline pr-2">Last modified by me</p> 
+                  </div>
+                  <div className="d-sm-block d-none">
+                    <Link to="/course-grid"><i className="fas fa-th pr-3"></i></Link>
+                      <a href="#"><i className="fas fa-sort-alpha-down"></i></a>
+                  </div>
+              </div>
+          </div>
+      </div>
         <div className="list-group">
 
             {
                 courses.map(course =>
-                    <CourseListItem course={course}/>
+                    <CourseListItem 
+                    key={course.id}
+                    course={course}/>
                 )
             }
 
