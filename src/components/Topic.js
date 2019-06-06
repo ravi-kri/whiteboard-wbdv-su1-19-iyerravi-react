@@ -5,7 +5,7 @@ import WidgetService from '../services/WidgetService'
 import WidgetReducer from '../reducers/WidgetReducer'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
-import {WidgetListContainer} from '../containers/WidgetListContainer'
+import WidgetListContainer from '../containers/WidgetListContainer'
 
 const store = createStore(WidgetReducer)
 

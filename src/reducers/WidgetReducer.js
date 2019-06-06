@@ -1,6 +1,6 @@
 import widgetService from '../services/WidgetService'
 import {
-    UPDATE_WIDGET,MOVE_WIDGET_DOWN, MOVE_WIDGET_UP,PREVIEW_MODE_TOGGLE,DELETE_WIDGET,CREATE_WIDGET
+    UPDATE_WIDGET,MOVE_WIDGET_DOWN, MOVE_WIDGET_UP,PREVIEW_MODE_TOGGLE,DELETE_WIDGET, CREATE_WIDGET
 } from "../actions/WidgetAction";
 const service = widgetService.getInstance();
 let widgets = service.findAllWidgets();
@@ -9,10 +9,10 @@ const widgetReducer = (state = {widgets: [],isPreview:false}, action) => {
     let newState = {...state}
     newState.widgets = [...state.widgets]
     switch (action.type) {
-        case CREATE_WIDGET:
+        case "CREATE_WIDGET":
         {
-            newState.widgets.push(action.widget)
-            return newState;
+            // newState.widgets = newState.widgets.push(action.widget)
+            return {widgets: action.widgets};
         }
         case "FIND_ALL_WIDGETS":
             {

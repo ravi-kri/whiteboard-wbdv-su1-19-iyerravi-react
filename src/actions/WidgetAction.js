@@ -5,7 +5,7 @@ export const MOVE_WIDGET_UP = 'MOVE_WIDGET_UP'
 export const MOVE_WIDGET_DOWN = 'MOVE_WIDGET_DOWN';
 export const PREVIEW_MODE_TOGGLE = 'PREVIEW_MODE_TOGGLE';
 export const DELETE_WIDGET = 'DELETE_WIDGET';
-export const CREATE_WIDGET = 'CREATE_WIDGET';
+// export const CREATE_WIDGET = 'CREATE_WIDGET';
 // export const FIND_ALL_WIDGETS = 'FIND_ALL_WIDGETS';
 
 export function updateWidget(widget) {
@@ -15,19 +15,13 @@ export function updateWidget(widget) {
     }
 }
 
-// export function findAllWidgets(widget) {
+
+// export function addWidget(widget) {
 //     return {
-//         type: FIND_ALL_WIDGETS,
+//         type: CREATE_WIDGET,
 //         widget: widget
 //     }
 // }
-
-export function addWidget(widget) {
-    return {
-        type: CREATE_WIDGET,
-        widget: widget
-    }
-}
 
 export function deleteWidget(widgetId) {
     return {

@@ -15,6 +15,7 @@ class WidgetList extends React.Component
             let idx2 = w2.index ? w2.index : -1;
             return (idx1<idx2) ? -1 : (idx1>idx2) ? 1 : 0;
         });
+        console.log(widgets)
         // let widgets = this.props.widgets;
         
         return (
@@ -23,7 +24,6 @@ class WidgetList extends React.Component
                      aria-labelledby='module1-lesson1-topic1'>
                     <div className="row mb-3">
                         <div className="offset-9">
-                            <button className="btn btn-success mr-2">Save</button>
                             <span className="mr-2">Preview</span>
                             <Link className="no-decorate" to="#" onClick={e => this.props.onPreviewModeToggle()}>
                                 <i className="fas fa-2x fa-toggle-off"></i>
@@ -31,7 +31,7 @@ class WidgetList extends React.Component
                         </div>
                     </div>
                     {widgets.map(w => <Widget 
-                                            key={w.id} widget={w} 
+                                        key={w.id} widget={w} 
                                             updateWidget={this.props.onWidgetUpdate}
                                             isUpDisabled={w.index == 1}
                                             onWidgetDelete={this.props.onWidgetDelete}
@@ -40,10 +40,10 @@ class WidgetList extends React.Component
                                             onWidgetMoveUp = {this.props.onWidgetMoveUp}
                                             onWidgetMoveDown = {this.props.onWidgetMoveDown}/>)}
                 </div>
-                <button className="btn btn-danger bottom-right m-4" onClick={e => {
-                    this.props.onWidgetAdd(widgets.length);
+                <button className="btn btn-success bottom-right m-4" onClick={e => {
+                    this.props.createWidget(widgets.length);
                 }}>
-                    <i className="fas fa-plus-circle"></i>
+                    Create
                 </button>
             </div>
         )

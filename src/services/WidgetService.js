@@ -12,11 +12,20 @@ export default class WidgetService {
         return this.myInstance;
     }
 
-    createWidget = widget => {
-        widgets.push(widget)
-    }
+    // createWidget = widget => {
+    //     widgets.push(widget)
+    // }
+    createWidget = widget =>
+        fetch("http://localhost:8080/api/widgets", {
+            method: 'POST',
+            body: JSON.stringify(widget),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(response => response.json())
 
-        findAllWidgets = () =>
+    findAllWidgets = () =>
         fetch("http://localhost:8080/api/widgets")
             .then(response => response.json())
         // widgets
@@ -30,6 +39,13 @@ export default class WidgetService {
     deleteWidget = widgetId => {
         widgets = widgets.filter(widget => widget.id !== widgetId)
     }
+
+    // deleteWidget = (widgetId) =>
+    // fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
+    //     method: 'DELETE'
+    // }).then(response => response.json())
+
+
     udpateWidget = (widgetId, newwidget) => {
         widgets = widgets.map(widget => {
             if(widget.id != widgetId)
@@ -38,4 +54,6 @@ export default class WidgetService {
                 return newwidget;
         })
     }
+
+ 
 }

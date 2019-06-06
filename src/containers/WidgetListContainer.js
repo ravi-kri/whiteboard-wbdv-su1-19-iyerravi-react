@@ -1,7 +1,7 @@
 import React from 'react'
 import WidgetList from '../components/WidgetList'
 import {connect} from 'react-redux'
-import { updateWidget,moveWidgetDown,moveWidgetUp,previewModeToggle,deleteWidget,addWidget } from "../actions/WidgetAction";
+import { updateWidget,moveWidgetDown,moveWidgetUp,previewModeToggle,deleteWidget } from "../actions/WidgetAction";
 import service from "../services/WidgetService";
 
 const WidgetService = service.getInstance();
@@ -35,18 +35,24 @@ const mapDispatchToProps = (dispatch) => {
         onWidgetDelete: (widgetId) => {
             return dispatch(deleteWidget(widgetId));
         },
-        onWidgetAdd: (index) => {
+        createWidget: (index) => {
             let widget = {
-                "type": "HEADING",
-                "size": 1,
-                "text": '',
-                "name" : '',
-                "index" : index
+                id:  Math.floor(Math.random() * 1000),
+                type: "HEADING",
+                name : 'New Widget',
+                index : index+1
             }
-            return dispatch(addWidget(widget));
+            console.log(widget)
+            WidgetService.createWidget(widget).then(
+                widgets => dispatch({type:'CREATE_WIDGET',widgets:widgets})
+            )
+            // return dispatch(addWidget(widget));
         },
+       
         
     }
 }
 
-export const WidgetListContainer = connect(mapStateToProps,mapDispatchToProps)(WidgetList)
+const WidgetListContainer = connect(mapStateToProps,mapDispatchToProps)(WidgetList)
+
+export default WidgetListContainer
