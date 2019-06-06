@@ -1,18 +1,52 @@
 import React from 'react'
+import Widget from './Widget'
+import {Link} from "react-router-dom";
 
-const WidgetList = ({widgets}) =>
-    <div>
-        <h1>Widget List {widgets.length}</h1>
-        <ul>
-            {
-                widgets.map(widget =>
-                    <div>
-                <li>{widget.name}</li>
-                <li>{widget.text}</li>
+class WidgetList extends React.Component
+{
+    constructor(props){
+        super(props);
+        this.props.findAllWidgets();
+    }
+    render()
+    {
+        let widgets = this.props.widgets.sort((w1,w2) => {
+            let idx1 = w1.index ? w1.index : -1;
+            let idx2 = w2.index ? w2.index : -1;
+            return (idx1<idx2) ? -1 : (idx1>idx2) ? 1 : 0;
+        });
+        // let widgets = this.props.widgets;
+        
+        return (
+            <div className="tab-content" id="pills-tabContent-module1">
+                <div className="tab-pane fade show active" id='pills-module1-lesson1-topic1' role="tabpanel"
+                     aria-labelledby='module1-lesson1-topic1'>
+                    <div className="row mb-3">
+                        <div className="offset-9">
+                            <button className="btn btn-success mr-2">Save</button>
+                            <span className="mr-2">Preview</span>
+                            <Link className="no-decorate" to="#" onClick={e => this.props.onPreviewModeToggle()}>
+                                <i className="fas fa-2x fa-toggle-off"></i>
+                            </Link>
+                        </div>
+                    </div>
+                    {widgets.map(w => <Widget 
+                                            key={w.id} widget={w} 
+                                            updateWidget={this.props.onWidgetUpdate}
+                                            isUpDisabled={w.index == 1}
+                                            onWidgetDelete={this.props.onWidgetDelete}
+                                            isDownDisabled={w.index == widgets.length}
+                                            isPreview = {this.props.isPreview}
+                                            onWidgetMoveUp = {this.props.onWidgetMoveUp}
+                                            onWidgetMoveDown = {this.props.onWidgetMoveDown}/>)}
                 </div>
-                )
-            }
-        </ul>
-    </div>
-
-export default WidgetList
+                <button className="btn btn-danger bottom-right m-4" onClick={e => {
+                    this.props.onWidgetAdd(widgets.length);
+                }}>
+                    <i className="fas fa-plus-circle"></i>
+                </button>
+            </div>
+        )
+    }
+}
+export default WidgetList;

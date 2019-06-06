@@ -5,33 +5,9 @@ import WidgetService from '../services/WidgetService'
 import WidgetReducer from '../reducers/WidgetReducer'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
-import WidgetListContainer from '../containers/WidgetListContainer'
+import {WidgetListContainer} from '../containers/WidgetListContainer'
 
 const store = createStore(WidgetReducer)
-
-// const Topic = ({
-//     updateTopic,
-//     deleteTopic,
-//     addTopic,
-//     selectedTopic,
-//     selectTopic,
-//     topics
-// }) => {
-//     return(
-//         <div>
-//             <TopicPills
-//                 updateTopic = {updateTopic}
-//                 deleteTopic = {deleteTopic}
-//                 addTopic = {addTopic}
-//                 selectedTopic = {selectedTopic}
-//                 selectTopic = {selectTopic}
-//                 topics = {topics}
-//             />
-//         </div>
-//     )
-// }
-
-// export default Topic;
 
 export default class Topic extends React.Component {
     constructor(props) {

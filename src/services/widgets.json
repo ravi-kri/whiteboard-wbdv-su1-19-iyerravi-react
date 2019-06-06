@@ -1,16 +1,40 @@
 [
     {
-      "id": 123,
-      "type": "HEADING",
-      "name": "Heading 1",
-      "size":1,
-      "text":"Hello World"
+        "id":1,
+        "type": "HEADING",
+        "size": 2,
+        "text": "The Document Object Model",
+        "name" : "Article Header",
+        "index" : 1
     },
     {
-      "id": 234,
-      "type": "HEADING",
-      "name": "Heading 2",
-      "size":2,
-      "text":"Life is good!"
+        "id":2,
+        "type": "PARAGRAPH",
+        "text": "This topic introduces the DOM",
+        "name" : "abstract",
+        "index" : 2
+    },
+    {
+        "id":3,
+        "type": "LIST",
+        "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes",
+        "name" : "module list",
+        "isOrdered" : false,
+        "index" : 3
+    },
+    {
+        "id":4,
+        "type": "IMAGE",
+        "src": "https://picsum.photos/200",
+        "name" : "react lifecycle diagram",
+        "index" : 4
+    },
+    {
+        "id":5,
+        "type": "LINK",
+        "title": "The DOM",
+        "href": "https://en.wikipedia.org/wiki/Document_Object_Model",
+        "name" : "react docs link",
+        "index" : 5
     }
-  ]
+]
