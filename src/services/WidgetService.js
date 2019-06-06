@@ -12,11 +12,8 @@ export default class WidgetService {
         return this.myInstance;
     }
 
-    // createWidget = widget => {
-    //     widgets.push(widget)
-    // }
     createWidget = widget =>
-        fetch("http://localhost:8080/api/widgets", {
+        fetch("https://webdevsu19-iyerravi-serverjava.herokuapp.com/api/widgets", {
             method: 'POST',
             body: JSON.stringify(widget),
             headers: {
@@ -26,7 +23,7 @@ export default class WidgetService {
         .then(response => response.json())
 
     findAllWidgets = () =>
-        fetch("http://localhost:8080/api/widgets")
+        fetch("https://webdevsu19-iyerravi-serverjava.herokuapp.com/api/widgets")
             .then(response => response.json())
         // widgets
 
