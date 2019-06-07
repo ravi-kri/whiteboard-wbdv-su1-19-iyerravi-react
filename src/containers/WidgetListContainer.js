@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
                 widget: widget
             });
         },
-        
+
         onWidgetMoveUp:(index) => {
             return dispatch({
                 type: 'MOVE_WIDGET_UP',
@@ -63,6 +63,18 @@ const mapDispatchToProps = (dispatch) => {
             WidgetService.deleteWidget(widgetid).then(
                 widgets => dispatch({type:'DELETE_WIDGET',widgets:widgets})
             )
+        },
+        onSaveWidgets: (widgets) => {
+            WidgetService.saveWidgets(widgets)
+                .then(res => res.json())
+                .then(widgets => {
+                    dispatch(
+                        {
+                           type: 'SAVED_WIDGETS',
+                            widgets : widgets
+                        }
+                    );
+                })
         },
         
     }

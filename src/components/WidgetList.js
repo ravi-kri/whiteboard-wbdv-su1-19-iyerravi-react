@@ -15,8 +15,6 @@ class WidgetList extends React.Component
             let idx2 = w2.index ? w2.index : -1;
             return (idx1<idx2) ? -1 : (idx1>idx2) ? 1 : 0;
         });
-        console.log(widgets)
-        // let widgets = this.props.widgets;
         
         return (
             <div className="tab-content" id="pills-tabContent-module1">
@@ -24,6 +22,9 @@ class WidgetList extends React.Component
                      aria-labelledby='module1-lesson1-topic1'>
                     <div className="row mb-3">
                         <div className="offset-9">
+                        <button className="btn btn-success mr-2" onClick={e => {
+                                this.props.onSaveWidgets(this.props.widgets);
+                            }}>Save</button>
                             <Link className="no-decorate" to="#" onClick={e => this.props.onPreviewModeToggle()}>
                                 <p className="btn btn-info">Preview</p>
                             </Link>

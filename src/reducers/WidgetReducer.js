@@ -11,6 +11,11 @@ const widgetReducer = (state = {widgets: [],isPreview:false}, action) => {
                 newState.widgets = action.widgets;
                 return newState;
             }
+        case "SAVED_WIDGETS":
+                {
+                    newState.widgets = action.widgets;
+                    return newState;
+                }
         case "DELETE_WIDGET": {
             return {widgets: action.widgets};
             }
@@ -48,6 +53,7 @@ const widgetReducer = (state = {widgets: [],isPreview:false}, action) => {
             newState.isPreview = !newState.isPreview;
             return newState;
         }
+        
         case 'UPDATE_WIDGET':{
             newState.widgets = newState.widgets.map(w=> {
                 if(w.id==action.widget.id) return action.widget
@@ -55,6 +61,7 @@ const widgetReducer = (state = {widgets: [],isPreview:false}, action) => {
             });
             return newState;
         }
+        
         case "FIND_WIDGET":
             {
                 return {widgets: action.widgets};

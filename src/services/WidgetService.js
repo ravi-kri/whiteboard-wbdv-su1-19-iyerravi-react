@@ -1,4 +1,3 @@
-import widgets from './widgets.json'
 const url = 'http://localhost:8080/api/widgets'
 export default class WidgetService {
     
@@ -25,9 +24,6 @@ export default class WidgetService {
         fetch("http://localhost:8080/api/widgets")
             .then(response => response.json())
 
-    // findWidgetById = widgetId => {
-    //     return widgets.find(widget => widget.id == widgetId)
-    // }
 
     findWidgetById = widgetId =>
         fetch(`http://localhost:8080/api/widgets/${widgetId}`,{
@@ -41,14 +37,25 @@ export default class WidgetService {
     }).then(response => response.json())
 
 
-    udpateWidget = (widgetId, newwidget) => {
-        widgets = widgets.map(widget => {
-            if(widget.id != widgetId)
-                return widget;
-            else
-                return newwidget;
+    updateWidget = (newWidget) =>
+        fetch(`http://localhost:8080/api/widgets/${newWidget.id}`, {
+            method: 'PUT',
+            body: JSON.stringify(newWidget),
+            headers: {
+                'content-type': 'application/json'
+            }
         })
-    }
+        .then(response => response.json())
 
- 
+    saveWidgets = (widgets) => 
+          
+            fetch('http://localhost:8080/api/savewidgets/',
+                {
+                     method: "POST",
+                    headers: {
+                        "Content-Type": 'application/json'
+                    },
+                    body: JSON.stringify(widgets)
+                });
+            
 }
