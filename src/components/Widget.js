@@ -11,7 +11,7 @@ import ParagraphWidgetContent from './ParagraphWidgetContent';
 import ParagraphWidgetPreview from './ParagraphWidgetPreview';
 // import { deleteWidget } from '../actions/WidgetAction';
 
-const Widget = ({widget,updateWidget,onWidgetMoveUp,onWidgetDelete,onWidgetMoveDown,isDownDisabled,isUpDisabled,isPreview,deleteWidget}) => {
+const Widget = ({widget,updateWidget,onWidgetMoveUp,onWidgetMoveDown,isDownDisabled,isUpDisabled,isPreview,deleteWidget}) => {
     const widgetContentStyle = {
         background: 'whitesmoke'
     }
@@ -29,18 +29,12 @@ const Widget = ({widget,updateWidget,onWidgetMoveUp,onWidgetDelete,onWidgetMoveD
                             {'LINK' == widget.type && <h1>Link widget</h1>}
                         </div>
                         <div className="col-7">
-                        {/* <button className="btn btn-danger float-right" onClick={e => {
-                                onWidgetDelete(widget.id)
-                            }}> */}
-                        <button className="btn btn-danger float-right" onClick={() => {
-                                onWidgetDelete(widget.id)
-                            }}>
-                                Delete
-                            </button>
+                        
+                       
                             <button className="btn btn-danger float-right" onClick={() => {
                                 deleteWidget(widget.id)
                             }}>
-                                Delete from Server
+                                Delete
                             </button>
 
                             <select

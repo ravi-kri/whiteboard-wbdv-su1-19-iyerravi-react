@@ -24,17 +24,16 @@ export default class WidgetService {
     findAllWidgets = () =>
         fetch("http://localhost:8080/api/widgets")
             .then(response => response.json())
-        // widgets
 
-    findWidgetById = widgetId => {
-        return widgets.find(widget => widget.id == widgetId)
-    }
-   
-    
-    
-    // deleteWidget = widgetId => {
-    //     widgets = widgets.filter(widget => widget.id !== widgetId)
+    // findWidgetById = widgetId => {
+    //     return widgets.find(widget => widget.id == widgetId)
     // }
+
+    findWidgetById = widgetId =>
+        fetch(`http://localhost:8080/api/widgets/${widgetId}`,{
+            method: 'GET'
+        })
+            .then(response => response.json())
 
     deleteWidget = (widgetId) =>
     fetch(`http://localhost:8080/api/widgets/${widgetId}`, {

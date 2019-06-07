@@ -1,6 +1,6 @@
 import widgetService from '../services/WidgetService'
 import {
-    UPDATE_WIDGET,MOVE_WIDGET_DOWN, MOVE_WIDGET_UP,PREVIEW_MODE_TOGGLE,DELETE_WIDGET, CREATE_WIDGET
+    UPDATE_WIDGET,PREVIEW_MODE_TOGGLE
 } from "../actions/WidgetAction";
 const service = widgetService.getInstance();
 let widgets = service.findAllWidgets();
@@ -20,11 +20,7 @@ const widgetReducer = (state = {widgets: [],isPreview:false}, action) => {
                 return newState;
                 // widgets: action.widgets
             }
-        case DELETE_WIDGET: {
-                newState.widgets = newState.widgets.filter(w=> (w.id!=action.widgetId))
-                return newState;
-            }
-        case "DELETE_WIDGET_S": {
+        case "DELETE_WIDGET": {
             return {widgets: action.widgets};
             }
         case UPDATE_WIDGET:{
@@ -34,7 +30,7 @@ const widgetReducer = (state = {widgets: [],isPreview:false}, action) => {
             });
             return newState;
         }
-        case MOVE_WIDGET_DOWN:{
+        case 'MOVE_WIDGET_DOWN':{
             let widgets = state.widgets.map(w => {
                  if(w.index == action.curIndex)
                  {
@@ -49,7 +45,7 @@ const widgetReducer = (state = {widgets: [],isPreview:false}, action) => {
              newState.widgets = widgets;
              return newState;
          }
-         case MOVE_WIDGET_UP:{
+         case 'MOVE_WIDGET_UP':{
              let widgets = state.widgets.map(w => {
                  if(w.index == action.curIndex)
                  {

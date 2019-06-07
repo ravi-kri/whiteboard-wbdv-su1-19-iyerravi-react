@@ -1,7 +1,6 @@
-import React from 'react'
 import WidgetList from '../components/WidgetList'
 import {connect} from 'react-redux'
-import { updateWidget,moveWidgetDown,moveWidgetUp,previewModeToggle,deleteWidget } from "../actions/WidgetAction";
+import { updateWidget,previewModeToggle} from "../actions/WidgetAction";
 import service from "../services/WidgetService";
 
 const WidgetService = service.getInstance();
@@ -23,17 +22,26 @@ const mapDispatchToProps = (dispatch) => {
         onWidgetUpdate: (widget) => {
             return dispatch(updateWidget(widget));
         },
+        
         onWidgetMoveUp:(index) => {
-            return dispatch(moveWidgetUp(index));
+            return dispatch({
+                type: 'MOVE_WIDGET_UP',
+                curIndex:index
+            });
         },
         onWidgetMoveDown:(index) => {
-            return dispatch(moveWidgetDown(index));
+            return dispatch({
+                type: 'MOVE_WIDGET_DOWN',
+                curIndex:index
+            });
         },
+
+        // onWidgetMoveDown:(index) => {
+        //     return dispatch(moveWidgetDown(index));
+        // },
+
         onPreviewModeToggle: () => {
             return dispatch(previewModeToggle());
-        },
-        onWidgetDelete: (widgetId) => {
-            return dispatch(deleteWidget(widgetId));
         },
 
         createWidget: (index) => {
@@ -43,14 +51,13 @@ const mapDispatchToProps = (dispatch) => {
                 name : 'New Widget',
                 index : index+1
             }
-            console.log(widget)
             WidgetService.createWidget(widget).then(
                 widgets => dispatch({type:'CREATE_WIDGET',widgets:widgets})
             )
         },
-       deleteWidget: (widgetid) => {
+        deleteWidget: (widgetid) => {
             WidgetService.deleteWidget(widgetid).then(
-                widgets => dispatch({type:'DELETE_WIDGET_S',widgets:widgets})
+                widgets => dispatch({type:'DELETE_WIDGET',widgets:widgets})
             )
         },
         
