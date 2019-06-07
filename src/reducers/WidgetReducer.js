@@ -1,35 +1,19 @@
-import widgetService from '../services/WidgetService'
-import {
-    UPDATE_WIDGET,PREVIEW_MODE_TOGGLE
-} from "../actions/WidgetAction";
-const service = widgetService.getInstance();
-let widgets = service.findAllWidgets();
-// console.log(widgets)
 const widgetReducer = (state = {widgets: [],isPreview:false}, action) => {
     let newState = {...state}
     newState.widgets = [...state.widgets]
     switch (action.type) {
         case "CREATE_WIDGET":
         {
-            // newState.widgets = newState.widgets.push(action.widget)
             return {widgets: action.widgets};
         }
         case "FIND_ALL_WIDGETS":
             {
                 newState.widgets = action.widgets;
                 return newState;
-                // widgets: action.widgets
             }
         case "DELETE_WIDGET": {
             return {widgets: action.widgets};
             }
-        case UPDATE_WIDGET:{
-            newState.widgets = newState.widgets.map(w=> {
-                if(w.id==action.widget.id) return action.widget
-                else return w;
-            });
-            return newState;
-        }
         case 'MOVE_WIDGET_DOWN':{
             let widgets = state.widgets.map(w => {
                  if(w.index == action.curIndex)
@@ -60,12 +44,21 @@ const widgetReducer = (state = {widgets: [],isPreview:false}, action) => {
              newState.widgets = widgets;
              return newState;
          }
-         case PREVIEW_MODE_TOGGLE:{
+         case 'PREVIEW_MODE_TOGGLE':{
             newState.isPreview = !newState.isPreview;
             return newState;
         }
+        case 'UPDATE_WIDGET':{
+            newState.widgets = newState.widgets.map(w=> {
+                if(w.id==action.widget.id) return action.widget
+                else return w;
+            });
+            return newState;
+        }
         case "FIND_WIDGET":
-            break;
+            {
+                return {widgets: action.widgets};
+            }
         default:
             return state;
     }

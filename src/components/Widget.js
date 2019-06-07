@@ -57,13 +57,13 @@ const Widget = ({widget,updateWidget,onWidgetMoveUp,onWidgetMoveDown,isDownDisab
                             <button disabled={isDownDisabled} className="mr-2 btn btn-warning float-right" onClick={e => {
                                 onWidgetMoveDown(widget.index);
                             }}>
-                                <i className="fas fa-arrow-down"></i>
+                                Down
                             </button>
 
                             <button disabled={isUpDisabled} className="mr-2 btn btn-warning float-right" onClick={e => {
                                 onWidgetMoveUp(widget.index);
                             }}>
-                                <i className="fas fa-arrow-up"></i>
+                                Up
                             </button>
                         </div>
                         {'HEADING' == widget.type && <HeaderWidgetContent widget={widget} updateWidget={updateWidget}/>}

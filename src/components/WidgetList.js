@@ -24,9 +24,8 @@ class WidgetList extends React.Component
                      aria-labelledby='module1-lesson1-topic1'>
                     <div className="row mb-3">
                         <div className="offset-9">
-                            <span className="mr-2">Preview</span>
                             <Link className="no-decorate" to="#" onClick={e => this.props.onPreviewModeToggle()}>
-                                <i className="fas fa-2x fa-toggle-off"></i>
+                                <p className="btn btn-info">Preview</p>
                             </Link>
                         </div>
                     </div>

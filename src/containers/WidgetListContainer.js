@@ -1,6 +1,5 @@
 import WidgetList from '../components/WidgetList'
 import {connect} from 'react-redux'
-import { updateWidget,previewModeToggle} from "../actions/WidgetAction";
 import service from "../services/WidgetService";
 
 const WidgetService = service.getInstance();
@@ -20,7 +19,10 @@ const mapDispatchToProps = (dispatch) => {
             )
         },
         onWidgetUpdate: (widget) => {
-            return dispatch(updateWidget(widget));
+            return dispatch({
+                type: 'UPDATE_WIDGET',
+                widget: widget
+            });
         },
         
         onWidgetMoveUp:(index) => {
@@ -36,14 +38,16 @@ const mapDispatchToProps = (dispatch) => {
             });
         },
 
-        // onWidgetMoveDown:(index) => {
-        //     return dispatch(moveWidgetDown(index));
-        // },
-
         onPreviewModeToggle: () => {
-            return dispatch(previewModeToggle());
+            return dispatch({
+                type: 'PREVIEW_MODE_TOGGLE'
+            });
         },
-
+        findWidget: (wid) => {
+            WidgetService.findWidgetById(wid).then(
+                widget => dispatch({type:'FIND_WIDGET'})
+            )
+        },
         createWidget: (index) => {
             let widget = {
                 id:  Math.floor(Math.random() * 1000),
