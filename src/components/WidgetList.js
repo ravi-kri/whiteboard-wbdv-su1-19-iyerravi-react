@@ -37,6 +37,7 @@ class WidgetList extends React.Component
                                             onWidgetDelete={this.props.onWidgetDelete}
                                             isDownDisabled={w.index == widgets.length}
                                             isPreview = {this.props.isPreview}
+                                            deleteWidget = {this.props.deleteWidget}
                                             onWidgetMoveUp = {this.props.onWidgetMoveUp}
                                             onWidgetMoveDown = {this.props.onWidgetMoveDown}/>)}
                 </div>

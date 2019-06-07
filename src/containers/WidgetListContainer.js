@@ -35,6 +35,7 @@ const mapDispatchToProps = (dispatch) => {
         onWidgetDelete: (widgetId) => {
             return dispatch(deleteWidget(widgetId));
         },
+
         createWidget: (index) => {
             let widget = {
                 id:  Math.floor(Math.random() * 1000),
@@ -46,9 +47,12 @@ const mapDispatchToProps = (dispatch) => {
             WidgetService.createWidget(widget).then(
                 widgets => dispatch({type:'CREATE_WIDGET',widgets:widgets})
             )
-            // return dispatch(addWidget(widget));
         },
-       
+       deleteWidget: (widgetid) => {
+            WidgetService.deleteWidget(widgetid).then(
+                widgets => dispatch({type:'DELETE_WIDGET_S',widgets:widgets})
+            )
+        },
         
     }
 }

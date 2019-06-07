@@ -11,7 +11,7 @@ import ParagraphWidgetContent from './ParagraphWidgetContent';
 import ParagraphWidgetPreview from './ParagraphWidgetPreview';
 // import { deleteWidget } from '../actions/WidgetAction';
 
-const Widget = ({widget,updateWidget,onWidgetMoveUp,onWidgetDelete,onWidgetMoveDown,isDownDisabled,isUpDisabled,isPreview}) => {
+const Widget = ({widget,updateWidget,onWidgetMoveUp,onWidgetDelete,onWidgetMoveDown,isDownDisabled,isUpDisabled,isPreview,deleteWidget}) => {
     const widgetContentStyle = {
         background: 'whitesmoke'
     }
@@ -36,6 +36,11 @@ const Widget = ({widget,updateWidget,onWidgetMoveUp,onWidgetDelete,onWidgetMoveD
                                 onWidgetDelete(widget.id)
                             }}>
                                 Delete
+                            </button>
+                            <button className="btn btn-danger float-right" onClick={() => {
+                                deleteWidget(widget.id)
+                            }}>
+                                Delete from Server
                             </button>
 
                             <select

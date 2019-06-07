@@ -1,5 +1,4 @@
 import widgets from './widgets.json'
-// import axios from 'axios'
 const url = 'http://localhost:8080/api/widgets'
 export default class WidgetService {
     
@@ -13,7 +12,7 @@ export default class WidgetService {
     }
 
     createWidget = widget =>
-        fetch("https://webdevsu19-iyerravi-serverjava.herokuapp.com/api/widgets", {
+        fetch("http://localhost:8080/api/widgets", {
             method: 'POST',
             body: JSON.stringify(widget),
             headers: {
@@ -23,7 +22,7 @@ export default class WidgetService {
         .then(response => response.json())
 
     findAllWidgets = () =>
-        fetch("https://webdevsu19-iyerravi-serverjava.herokuapp.com/api/widgets")
+        fetch("http://localhost:8080/api/widgets")
             .then(response => response.json())
         // widgets
 
@@ -33,14 +32,14 @@ export default class WidgetService {
    
     
     
-    deleteWidget = widgetId => {
-        widgets = widgets.filter(widget => widget.id !== widgetId)
-    }
+    // deleteWidget = widgetId => {
+    //     widgets = widgets.filter(widget => widget.id !== widgetId)
+    // }
 
-    // deleteWidget = (widgetId) =>
-    // fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
-    //     method: 'DELETE'
-    // }).then(response => response.json())
+    deleteWidget = (widgetId) =>
+    fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
+        method: 'DELETE'
+    }).then(response => response.json())
 
 
     udpateWidget = (widgetId, newwidget) => {

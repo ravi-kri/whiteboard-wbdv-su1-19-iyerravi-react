@@ -24,6 +24,9 @@ const widgetReducer = (state = {widgets: [],isPreview:false}, action) => {
                 newState.widgets = newState.widgets.filter(w=> (w.id!=action.widgetId))
                 return newState;
             }
+        case "DELETE_WIDGET_S": {
+            return {widgets: action.widgets};
+            }
         case UPDATE_WIDGET:{
             newState.widgets = newState.widgets.map(w=> {
                 if(w.id==action.widget.id) return action.widget
