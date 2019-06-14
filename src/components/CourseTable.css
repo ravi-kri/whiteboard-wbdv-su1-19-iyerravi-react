@@ -1,0 +1,10 @@
+.bottom-right{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+a .fa-stack{
+    height: 1em;
+    width: 1em;
+    line-height:1em;
+}

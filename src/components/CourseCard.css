@@ -1,0 +1,7 @@
+.card-title, .card-text{
+    overflow: hidden;
+}
+a.no-decorate{
+    text-decoration:none;
+    color: black;
+}

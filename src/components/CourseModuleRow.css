@@ -1,0 +1,10 @@
+.modules{
+    background:#4e4747;
+    height: 90vh;
+    position:fixed;
+}
+
+.modules .nav-link{
+    background: #655858;
+    color:white;
+}

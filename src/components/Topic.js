@@ -1,39 +1,35 @@
 import React from 'react';
-import TopicPills from './TopicPills';
-import WidgetList from './WidgetList'
-import WidgetService from '../services/WidgetService'
-import WidgetReducer from '../reducers/WidgetReducer'
-import {createStore} from 'redux'
-import {Provider} from 'react-redux'
-import WidgetListContainer from '../containers/WidgetListContainer'
+import TopicPills from "./TopicPills";
+import WidgetList from "./WidgetList";
+import {WidgetListContainer} from '../containers/WidgetListContainer'
+import {Provider} from 'react-redux';
+import { createStore } from 'redux'
+import WidgetReducer from "../reducers/WidgetReducer";
 
-const store = createStore(WidgetReducer)
+const store = createStore(WidgetReducer);
 
-export default class Topic extends React.Component {
-    constructor(props) {
-        super(props)
-        this.widgetService = WidgetService.getInstance()
-        this.state = {
-            widgets: this.widgetService.findAllWidgets()
-        }
-    }
-    render() {
-        return (
-            <div>
+const Topic = ({updateTopic,saveTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topics,widgets,
+                   courseId,selectedModule,selectedLesson}) => {
+
+    return (
+        <div>
             <TopicPills
-                updateTopic = {this.props.updateTopic}
-                deleteTopic = {this.props.deleteTopic}
-                addTopic = {this.props.addTopic}
-                selectedTopic = {this.props.selectedTopic}
-                selectTopic = {this.props.selectTopic}
-                topics = {this.props.topics}
+                updateTopic = {updateTopic}
+                saveTopic = {saveTopic}
+                deleteTopic = {deleteTopic}
+                addTopic = {addTopic}
+                selectedTopic = {selectedTopic}
+                selectTopic = {selectTopic}
+                topics = {topics}
             />
-             <Provider store={store}>
-             <WidgetListContainer />
-                </Provider>
-        </div>
-           
-        )
-    }
-}
 
+            <WidgetListContainer
+                courseId = {courseId}
+                moduleId = {selectedModule}
+                lessonId = {selectedLesson}
+                topicId = {selectedTopic}
+                />
+        </div>
+    );
+}
+export default Topic;

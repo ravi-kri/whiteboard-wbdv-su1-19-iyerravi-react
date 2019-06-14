@@ -1,26 +1,26 @@
-.wbdv-mTabStyling .nav-link {
-    background: blue;
+.modules .nav-link {
+    background: #655858;
     color: white;
 }
 
-.wbdv-mStyling {
+.modules .nav-pills .nav-link.active {
+    background: #4a4d50;
+    color: white;
+}
+
+.modules {
     margin-top:10vh;
+    overflow-y: scroll;
+    height:90vh;
 }
 
-.wbdv-mStyling .nav-link {
-    background: blue;
-    color: white;
-}
-
-.wbdv-mStyling .nav-pills .nav-link.active {
-    background: red;
-    color: white;
-}
-
-
-.wbdv-mTabStyling {
-    background: blueviolet;
-    height: 100vh;
+.modulesTab {
+    background: #4e4747;
+    height: 90vh;
     position: fixed;
 }
 
+.modulesTab .nav-link {
+    background: #655858;
+    color: white;
+}

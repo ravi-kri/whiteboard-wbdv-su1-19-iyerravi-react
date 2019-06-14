@@ -1,33 +1,29 @@
-import React from 'react'
+import React from 'react';
+import './CourseRow.css'
 import {Link} from 'react-router-dom';
-
-const CourseRow = ({deleteACourse,course}) => {   
-
-        return (
-
-<div className="row wbdv-rowadjustment">
-<div className="col-sm-5 col-9">
-    <a href="#"> <i className="fas fa-file"></i> </a>
-    <Link to = {'/course-editor/'+ course.id } className="fas fa-edit">{course.title}</Link>
-</div>
-<div className="d-none col-2 d-sm-block">
-    John
-</div>
-<div className="d-none col-3 d-sm-block">
-    7:56 PM
-</div>
-<div className="col-1 wbdv-cross">
-<Link to = {'/course-editor/'+ course.id } className="fas fa-edit"></Link>
-</div>
-<div className="col-1 wbdv-cross">
-
-<Link to="#" className="fas fa-times" onClick={e => {
-                    deleteACourse({id:course.id});
-                }}></Link>
-                    
-</div>
-</div>
-        )
-    }
-
+const CourseRow = ({deleteCourse,course}) => {
+    return (
+        <div className="row">
+            <div className="col-sm-5 col-11">
+                <Link className="no-decorate" to={'/course/'+ course.id +'/edit'}>
+                    <i className="fas fa-file-alt"></i> </Link>
+                <Link to = {'/course/'+ course.id +'/edit'} className="no-decorate text-justify d-inline p-2">
+                    {course.title}
+                </Link>
+            </div>
+            <div className="col-2 d-none d-sm-block">
+                <p className="text-justify text-left">me</p>
+            </div>
+            <div className="col-4 d-none d-sm-block">
+                <p className="text-justify text-left">6.45 PM</p>
+            </div>
+            <div className="col-1">
+                <Link className="no-decorate" to={"#"} onClick={e => {
+                    deleteCourse({id:course.id});
+                }}>
+                    <i className="fas fa-times"></i></Link>
+            </div>
+        </div>
+    )
+}
 export default CourseRow;

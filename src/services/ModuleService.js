@@ -1,30 +1,62 @@
-import CourseService from './CourseService'
-let courseService = new CourseService();
+import React from 'react';
+
+const URL = 'https://wbdv-su119-javaserver.herokuapp.com';
+
 export default class ModuleService {
-deleteModule(cid,mid) {
-    let realtedCourse = {... courseService.findCourseById(cid)};
-    realtedCourse.modules = realtedCourse.modules.filter(m => m.id != mid);
-    courseService.updateCourse(cid,realtedCourse);
-}
-createModule(cid,module){
-    let modules = this.findAllModules(cid)
-    modules.push(module);
-    let course = {...courseService.findCourseById(cid)};
-    course.modules = modules;
-    courseService.updateCourse(cid,course);
-}
-updateModule(cid,module){
-    let course = {...courseService.findCourseById(cid)};
-    course.modules = this.findAllModules(cid).map(m =>{
-        if(m.id == module.id) return module;
-        else return m;
-    });
-    courseService.updateCourse(cid,course);
-}
-findModuleById(cid,mid){
-    return courseService.findCourseById(cid).modules.filter(m => m.id == mid)[0]
-}
-findAllModules(cid){
-    return courseService.findCourseById(cid).modules ? courseService.findCourseById(cid).modules : []
-}   
+    static findAllModules(courseId) {
+        return fetch(URL + '/api/course/' + courseId + '/module',
+            {
+                 
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
+    }
+
+    static findModuleById(courseId, moduleId) {
+        return fetch(URL + '/api/module/' + moduleId,
+            {
+                 
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
+    }
+
+    static deleteModule(courseId, moduleId) {
+        return fetch(URL + '/api/module/' + moduleId,
+            {
+                 
+                method: "DELETE",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
+    }
+
+    static updateModule(courseId, module) {
+        return fetch(URL + '/api/module/' + module.id,
+            {
+                 
+                method: "PUT",
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify(module)
+            });
+    }
+
+    static createModule(courseId, module) {
+        return fetch(URL + '/api/course/' + courseId + '/module',
+            {
+                 
+                method: "POST",
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify(module)
+            });
+    }
 }

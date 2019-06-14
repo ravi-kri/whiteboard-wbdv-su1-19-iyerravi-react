@@ -1,30 +1,63 @@
+import React from 'react';
 import ModuleService from "./ModuleService";
-let moduleService =  new ModuleService();
+
+const URL = 'https://wbdv-su119-javaserver.herokuapp.com';
+
 export default class LessonService {
-findLessonById(cid,mid,lid){
-    return this.findAllLessons(cid,mid).filter(l => l.id == lid)[0]
-}
-updateLesson(cid,mid,les){
-    let module = {...moduleService.findModuleById(cid,mid)};
-    module.lessons = this.findAllLessons(cid,mid).map(l =>{
-        if(l.id == les.id) return les;
-        else return l;
-    });
-    moduleService.updateModule(cid,module);
-}
-findAllLessons(cid,mid){
-    return moduleService.findModuleById(cid,mid).lessons ? moduleService.findModuleById(cid,mid).lessons : [];
-}
-deleteLesson(cid,mid,lid){
-    let module = {... moduleService.findModuleById(cid,mid)};
-    module.lessons = module.lessons.filter(l => l.id != lid);
-    moduleService.updateModule(cid,module);
-}
-createLesson(cid,mid,les){
-    let less = this.findAllLessons(cid,mid)
-    less.push(les);
-    let module = {...moduleService.findModuleById(cid,mid)};
-    module.lessons = less;
-    moduleService.updateModule(cid,module);
-}
+    static findAllLessons(cid, mid) {
+        return fetch(URL + '/api/module/' + mid + '/lesson',
+            {
+                 
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
+    }
+
+    static findLessonById(cid, mid, lid) {
+        return fetch(URL + '/api/lesson/' + lid,
+            {
+                 
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
+    }
+
+    static updateLesson(cid, mid, lesson) {
+        return fetch(URL + '/api/lesson/' + lesson.id,
+            {
+                 
+                method: "PUT",
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify(lesson)
+            });
+    }
+
+    static deleteLesson(cid, mid, lid) {
+        return fetch(URL + '/api/lesson/' + lid,
+            {
+                 
+                method: "DELETE",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
+    }
+
+    static createLesson(cid, mid, lesson) {
+        return fetch(URL + '/api/module/' + mid + '/lesson',
+            {
+                 
+                method: "POST",
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify(lesson)
+            });
+    }
 }

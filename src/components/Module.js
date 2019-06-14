@@ -5,43 +5,41 @@ import './Module.css';
 
 
 const Module = ({
-    deleteModule,
-    addModule,
-    modules,
-    updateModule,
-    selectedModule,
-    selectModule,
-    updateTopic,
-    deleteTopic,
-    addTopic,
-    selectedTopic,
-    selectTopic,
-    topics
-}) => {
-    return(
-        <div className="container-fluid wbdv-mStyling">
+                    deleteModule, addModule, modules, updateModule,saveModule, selectedModule, selectModule,
+                    selectedLesson,
+                    updateTopic,saveTopic, deleteTopic, addTopic, selectedTopic,selectTopic,topics, widgets,courseId
+                }) => {
+    return (
+        <div className="container-fluid modules">
             <div className="row">
-            <div className="col-3 wbdv-mTabStyling">
-            <ModuleList
-            deleteModule={deleteModule}
-            modules={modules}
-            selectModule={selectModule}
-            addModule={addModule}
-            selectedModule={selectedModule}
-            updateModule={updateModule}/>
+                <div className="col-3 modulesTab">
+                    <ModuleList
+                        modules={modules}
+                        selectedModule={selectedModule}
+                        selectModule={selectModule}
+                        deleteModule={deleteModule}
+                        addModule={addModule}
+                        updateModule={updateModule}
+                        saveModule = {saveModule}
+                    />
+                </div>
+                <div className="col-9 offset-3">
+                    <ModuleTabContent
+                        updateTopic={updateTopic}
+                        saveTopic={saveTopic}
+                        deleteTopic={deleteTopic}
+                        addTopic={addTopic}
+                        selectedTopic={selectedTopic}
+                        selectTopic={selectTopic}
+                        topics={topics}
+                        widgets={widgets}
+                        courseId = {courseId}
+                        selectedModule = {selectedModule}
+                        selectedLesson = {selectedLesson}
+                    />
+                </div>
+            </div>
         </div>
-        <div className=" offset-3 col-9">
-        <ModuleTabContent
-            deleteTopic={deleteTopic}
-            selectedTopic={selectedTopic}
-            topics={topics}
-            updateTopic={updateTopic}
-            addTopic={addTopic}
-            selectTopic={selectTopic}/>
-</div>
-</div>
-</div>
-    )
+    );
 }
-
 export default Module;

@@ -1,9 +1,12 @@
+import React from 'react';
+
 const URL = 'https://wbdv-su119-javaserver.herokuapp.com';
 
-export default class CourseService {
-    static findAllCourses() {
-        return fetch(URL + '/api/course',
+export default class LinkWidgetService {
+    static findAllWidgets(cid, mid, lid, tid) {
+        return fetch(URL + '/api/topic/' + tid + '/link/widget',
             {
+                 
                 method: "GET",
                 headers: {
                     "Content-Type": 'application/json'
@@ -11,9 +14,10 @@ export default class CourseService {
             });
     }
 
-    static findCourseById(id) {
-        return fetch(URL + '/api/course/' + id,
+    static findWidgetById(cid, mid, lid, tid, wid) {
+        return fetch(URL + '/api/link/widget/' + wid,
             {
+                 
                 method: "GET",
                 headers: {
                     "Content-Type": 'application/json'
@@ -21,20 +25,20 @@ export default class CourseService {
             });
     }
 
-    static updateCourse(id, course) {
-        return fetch(URL + '/api/course/' + id,
+    static updateWidget(cid, mid, lid, tid, widget) {
+        return fetch(URL + '/api/link/widget/' + widget.id,
             {
                  
                 method: "PUT",
                 headers: {
                     "Content-Type": 'application/json'
                 },
-                body: JSON.stringify(course)
+                body: JSON.stringify(widget)
             });
     }
 
-    static deleteCourse(id) {
-        return fetch(URL + '/api/course/' + id,
+    static deleteWidget(cid, mid, lid, tid, wid) {
+        return fetch(URL + '/api/link/widget/' + wid,
             {
                  
                 method: "DELETE",
@@ -44,15 +48,15 @@ export default class CourseService {
             });
     }
 
-    static createCourse(c) {
-        return fetch(URL + '/api/course',
+    static createWidget(cid, mid, lid, topicId,widget) {
+        return fetch(URL + '/api/topic/' + topicId + '/link/widget',
             {
                  
                 method: "POST",
                 headers: {
                     "Content-Type": 'application/json'
                 },
-                body: JSON.stringify(c)
+                body: JSON.stringify(widget)
             });
     }
 }

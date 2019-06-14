@@ -1,61 +1,75 @@
-    const url = 'http://localhost:8080/api/widgets'
-    export default class WidgetService {
+import React from 'react';
+import LessonService from "./LessonService";
 
-    static myInstance = null;
-    static getInstance() {
-    if (WidgetService.myInstance == null) {
-        WidgetService.myInstance =
-            new WidgetService();
-    }
-    return this.myInstance;
-    }
+const URL = 'https://wbdv-su119-javaserver.herokuapp.com';
 
-    createWidget = widget =>
-    fetch("http://localhost:8080/api/widgets", {
-        method: 'POST',
-        body: JSON.stringify(widget),
-        headers: {
-            'content-type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-
-    findAllWidgets = () =>
-    fetch("http://localhost:8080/api/widgets")
-        .then(response => response.json())
-
-
-    findWidgetById = widgetId =>
-    fetch(`http://localhost:8080/api/widgets/${widgetId}`,{
-        method: 'GET'
-    })
-        .then(response => response.json())
-
-    deleteWidget = (widgetId) =>
-    fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
-    method: 'DELETE'
-    }).then(response => response.json())
-
-
-    updateWidget = (newWidget) =>
-    fetch(`http://localhost:8080/api/widgets/${newWidget.id}`, {
-        method: 'PUT',
-        body: JSON.stringify(newWidget),
-        headers: {
-            'content-type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-
-    saveWidgets = (widgets) => 
-        
-        fetch('http://localhost:8080/api/savewidgets/',
+export default class WidgetService {
+    static findAllWidgets(cid, mid, lid, tid) {
+        return fetch(URL + '/api/topic/' + tid + '/widget',
             {
-                    method: "POST",
+                 
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
+    }
+
+    static findWidgetById(cid, mid, lid, tid, wid) {
+        return fetch(URL + '/api/widget/' + wid,
+            {
+                 
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
+    }
+
+    static updateWidget(cid, mid, lid, tid, widget) {
+        return fetch(URL + '/api/widget/' + widget.id,
+            {
+                 
+                method: "PUT",
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify(widget)
+            });
+    }
+
+    static deleteWidget(cid, mid, lid, tid, wid) {
+        return fetch(URL + '/api/topic/' + wid,
+            {
+                 
+                method: "DELETE",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
+    }
+
+    static createWidget(cid, mid, lid, topicId,widget) {
+        return fetch(URL + '/api/topic/' + topicId + '/widget',
+            {
+                 
+                method: "POST",
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify(widget)
+            });
+    }
+
+    static  saveWidgets(courseId, moduleId, lessonId, topicId, widgets){
+        return fetch(URL + '/api/topic/' + topicId + '/widgets',
+            {
+                 
+                method: "PUT",
                 headers: {
                     "Content-Type": 'application/json'
                 },
                 body: JSON.stringify(widgets)
             });
-        
     }
+}
